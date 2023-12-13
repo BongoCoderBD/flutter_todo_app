@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../Styles/styles.dart';
+
 class HomeScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -9,7 +11,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenUI extends State<HomeScreen> {
-  List ToDoList = [];
+  List ToDoList = ["Upananda"];
 
   @override
   Widget build(BuildContext context) {
@@ -26,15 +28,22 @@ class HomeScreenUI extends State<HomeScreen> {
                 flex: 10,
                 child: Row(
                   children: [
-                    Expanded(child: TextFormField()),
-                    Expanded(child: ElevatedButton(onPressed: () { }, child: Text("Add"),)),
+                    Expanded(flex: 70,child: TextFormField(decoration: AppInputStyle("Add to list item"),)),
+                    Expanded(flex: 30,child: Padding(padding: EdgeInsets.only(left: 5),child: ElevatedButton(style: AppButtonStyle() ,onPressed: () { }, child: Text("Add"),),)),
                   ],
                 )),
             Expanded(flex: 90, child: ListView.builder(
               itemCount: ToDoList.length,
                 itemBuilder: (context, index){
                 return Card(
-                  child: Text("List"),
+                  child: sizedBox50(
+                    Row(
+                      children: [
+                        Expanded(flex: 80,child: Text("Item")),
+                        Expanded(flex: 20,child: TextButton(onPressed: () { }, child: Icon(Icons.delete),)),
+                      ],
+                    )
+                  ),
                 );
                 })),
           ]
